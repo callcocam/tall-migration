@@ -1,0 +1,48 @@
+{
+  "name": "callcocam/tall-migration",
+  "description": "Generate migrations from existing database structures",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Claudio Campos",
+      "email": "callcocam@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.4|^8.0",
+    "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+    "illuminate/console": "^6.0|^7.0|^8.0|^9.0",
+    "illuminate/database": "^6.0|^7.0|^8.0|^9.0",
+    "illuminate/config": "^6.0|^7.0|^8.0|^9.0",
+    "marcj/topsort": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tall\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.17",
+    "friendsofphp/php-cs-fixer": "^2.16"
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "@php ./vendor/bin/testbench package:discover --ansi"
+    ],
+    "test": ["vendor/bin/phpunit"]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Tall\\Migration\\TallMigrationProvider"
+      ]
+    }
+  },
+  "prefer-stable": true
+}

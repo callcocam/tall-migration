@@ -1,0 +1,27 @@
+Schema::create('[TableName]', function (Blueprint $table) {
+    [Schema]
+});
+Schema::table('[TableName]', function (Blueprint $table) {
+    if (!Schema::hasColumn('[TableName]', "slug")) {
+        $table->string('slug')->nullable();
+    }
+    else{
+         $table->string('slug')->nullable()->change();
+    }
+    if (!Schema::hasColumn('[TableName]', "deleted_at")) {
+        $table->softDeletes();
+    } 
+    if (Schema::hasColumn('[TableName]', "company_id")) {
+        $table->renameColumn('company_id','tenant_id')->change();
+    } 
+    if ('[TableName]' === 'companies') {
+        if (!Schema::hasColumn('companies', "domain")) {      
+            $table->renameColumn('assets','domain')->change();
+        }    
+    }        
+     if ('[TableName]' === 'roles') {
+        if (!Schema::hasColumn('roles', "special")) {      
+            $table->enum('special', ['no-access','all-access','no-defined'])->nullable();
+        }    
+    }             
+});
