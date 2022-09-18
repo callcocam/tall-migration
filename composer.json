@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Tall\\": "src/"
+      "Tall\\Migration\\": "src/"
     }
   },
   "autoload-dev": {
